@@ -2,15 +2,14 @@
 
 nerd:
   title: Check out NerdDice
-  body: |
+  body: >-
     These videos take you end-to-end through a project that creates a ruby gem.
     (The subject matter of polyhedral dice was chosen because Mike\'s a giant nerd.)
     The series covers a number of programming concepts that will help you be a better
     software developer, particularly in Ruby.
-
 why:
   title: Why Stateless Code
-  body: |
+  body: >-
     Inspired by Simon Sinek\'s brilliant video Start with Why, these videos explain the
     North Star of Stateless Code. What gets us out of bed in the morning and motivates
     us to keep producing videos? Why do we do what we do? What is the dream for this
