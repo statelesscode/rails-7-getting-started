@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @post %>
+
+<div>
+  <%= link_to "Edit this post", edit_post_path(@post) %> |
+  <%= link_to "Back to posts", posts_path %> |
+
+  <%= link_to "Destroy this post", @post,
+    data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+</div>

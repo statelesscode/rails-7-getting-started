@@ -104,7 +104,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to articles_path
-    assert_equal "Article was successfully destroyed", flash[:notice]
+    assert_equal "Article was successfully destroyed.", flash[:notice]
   end
 
   private

@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+nerd:
+  title: Check out NerdDice
+  body: >-
+    These videos take you end-to-end through a project that creates a ruby gem.
+    (The subject matter of polyhedral dice was chosen because Mike\'s a giant nerd.)
+    The series covers a number of programming concepts that will help you be a better
+    software developer, particularly in Ruby.
+why:
+  title: Why Stateless Code
+  body: >-
+    Inspired by Simon Sinek\'s brilliant video Start with Why, these videos explain the
+    North Star of Stateless Code. What gets us out of bed in the morning and motivates
+    us to keep producing videos? Why do we do what we do? What is the dream for this
+    organization? Start at the center of the Golden Circle and communicate outward rather
+    than on the outside and communicating inward. Are we just being lazy video editors by
+    leaving the mistakes in our videos? Why the Jesus is Lord in the footer and the
+    in-your-face anarchy symbol in the branding? These videos are here to remind ourselves
+    of our promise to you. Taking the time to stop and think about the Why will help you
+    prioritize and avoid mission creep.
