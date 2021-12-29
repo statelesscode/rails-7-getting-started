@@ -13,18 +13,24 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get articles_url
     assert_response :success
-    assert_select 'h1', 'Articles'
-    assert_select 'li', Article.count
-    assert_select 'a', 'New Article'
+    assert_select "h1", "Articles"
+    assert_select "li", Article.count
+    assert_select "a", "New Article"
   end
 
   test "should get show" do
     get article_url(@article)
     assert_response :success
-    assert_select 'h1', @article.title
-    assert_select 'p', @article.body
-    assert_select 'a', 'Edit'
-    assert_select 'a', 'Destroy'
+    assert_select "h1", @article.title
+    assert_select "p", @article.body
+    assert_select "a", "Edit"
+    assert_select "a", "Destroy"
+    assert_select "h2", "Comments"
+    assert_select "p.commenter", @article.comments.count
+    assert_select "p.comment-body", @article.comments.count
+    assert_select "h2", "Add a comment:"
+    assert_select "form"
+    assert_select "form p", 3
   end
 
   test "should get new" do
