@@ -7,6 +7,7 @@ nerd:
     (The subject matter of polyhedral dice was chosen because Mike\'s a giant nerd.)
     The series covers a number of programming concepts that will help you be a better
     software developer, particularly in Ruby.
+  status: public
 why:
   title: Why Stateless Code
   body: >-
@@ -19,3 +20,8 @@ why:
     in-your-face anarchy symbol in the branding? These videos are here to remind ourselves
     of our promise to you. Taking the time to stop and think about the Why will help you
     prioritize and avoid mission creep.
+  status: private
+outdated:
+  title: Inflation will never happen
+  body: We will just be able to keep near zero interest rates forever without consequences
+  status: archived
