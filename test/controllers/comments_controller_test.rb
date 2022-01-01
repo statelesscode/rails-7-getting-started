@@ -26,4 +26,14 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     assert_equal body, comment.body
     assert_equal "Comment was successfully created.", flash[:notice]
   end
+
+  test "should destroy comment" do
+    comment = @article.comments.last
+    assert_difference("Comment.count", -1) do
+      delete article_comment_path(@article, comment), params: { article_id: @article.id, id: comment.id }
+    end
+
+    assert_redirected_to article_path(@article)
+    assert_equal "Comment was successfully destroyed.", flash[:notice]
+  end
 end

@@ -30,6 +30,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_select "h2", "Comments"
     assert_select "p.commenter", @article.comments.count - 1
     assert_select "p.comment-body", @article.comments.count - 1
+    assert_select "p.destroy-comment", @article.comments.count - 1
     assert_select "h2", "Add a comment:"
     assert_select "form"
     assert_select "form p", 4
