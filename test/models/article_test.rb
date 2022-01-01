@@ -1,6 +1,7 @@
 require "test_helper"
 
 class ArticleTest < ActiveSupport::TestCase
+  include VisibleTestHelpers
 
   def setup
     @article = articles(:nerd)
@@ -9,14 +10,19 @@ class ArticleTest < ActiveSupport::TestCase
     @title_blank = "Title can't be blank"
     @body_blank = "Body can't be blank"
     @body_short = "Body is too short (minimum is 10 characters)"
-    @bad_status = "Censored"
-    @valid_status = "public"
-    @status_inclusion = "Status is not included in the list"
+    shared_status_setup
+    @status_new = get_new_article
+    @status_existing = @article
+    @public_count = 1
+    @klass_name = Article
+  end
+
+  test "has valid fixtures" do
+    run_model_fixture_tests @klass_name
   end
 
   test "should be valid and creatable with correct attributes" do
-    # new
-    article = Article.new(title: @valid_title, body: @valid_body, status: @valid_status)
+    article = get_new_article
     assert article.valid?
     assert article.save
     article.reload
@@ -24,14 +30,12 @@ class ArticleTest < ActiveSupport::TestCase
     assert_equal @valid_title, article.title
     assert_equal @valid_body, article.body
     assert_equal @valid_status, article.status
-
-    # existing
-    assert @article.valid?
   end
 
   test "should be invalid if title is blank" do
     # new
-    article = Article.new(body: @valid_body)
+    article = get_new_article
+    article.title = nil
     assert_not article.valid?
     assert_includes article.errors.full_messages, @title_blank
 
@@ -43,7 +47,8 @@ class ArticleTest < ActiveSupport::TestCase
 
   test "should be invalid if body is blank" do
     # new
-    article = Article.new(title: @valid_title)
+    article = get_new_article
+    article.body = ""
     assert_not article.valid?
     assert_includes article.errors.full_messages, @body_blank
 
@@ -56,7 +61,8 @@ class ArticleTest < ActiveSupport::TestCase
   test "should be invalid if body is too short" do
     too_short = "Fail"
     # new
-    article = Article.new(title: @valid_title, body: too_short)
+    article = get_new_article
+    article.body = too_short
     assert_not article.valid?
     assert_includes article.errors.full_messages, @body_short
 
@@ -66,29 +72,8 @@ class ArticleTest < ActiveSupport::TestCase
     assert_includes @article.errors.full_messages, @body_short
   end
 
-  test "should be invalid with bad status" do
-    # new
-    article = Article.new(title: @valid_title, body: @valid_body, status: @bad_status)
-    assert_not article.valid?
-    assert_includes article.errors.full_messages, @status_inclusion
-    # existing
-    @article.status = @bad_status
-    assert_not @article.valid?
-    assert_includes @article.errors.full_messages, @status_inclusion
-  end
-
-  test "archived should be true if archived" do
-    @article.status = "archived"
-    assert @article.archived?
-  end
-
-  test "archived should be false if not archived" do
-    assert_not @article.archived?
-    @article.status = "private"
-    assert_not @article.archived?
-  end
-
-  test "public count matches number of public records" do
-    assert_equal 1, Article.public_count
-  end
+  private
+    def get_new_article
+      Article.new(title: @valid_title, body: @valid_body, status: @valid_status)
+    end
 end

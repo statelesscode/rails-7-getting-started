@@ -33,14 +33,14 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_select "h2", "Add a comment:"
     assert_select "form"
     assert_select "form p", 4
+    status_option_assertions
   end
 
   test "should get new" do
     get new_article_url
     assert_response :success
     assert_select "h1", "New Article"
-    assert_select "form"
-    assert_select "form div", 4
+    article_form_assertions
   end
 
   test "should create article" do
@@ -76,8 +76,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     get edit_article_url(@article)
     assert_response :success
     assert_select "h1", "Edit Article"
-    assert_select "form"
-    assert_select "form div", 4
+    article_form_assertions
   end
 
   test "should update article" do
@@ -129,5 +128,18 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
       assert_select "div.error", @title_blank
       assert_select "div.error", @body_blank
       assert_select "div.error", @body_short
+    end
+
+    def article_form_assertions
+      assert_select "form"
+      assert_select "form div", 4
+      status_option_assertions
+    end
+
+    def status_option_assertions
+      assert_select "select option", 3
+      assert_select "option", "public"
+      assert_select "option", "private"
+      assert_select "option", "archived"
     end
 end
