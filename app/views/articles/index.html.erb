@@ -2,6 +2,10 @@
 
 <h1>Articles</h1>
 
+<p class="public-count">
+  Our blog has <%= pluralize(Article.public_count, "article") %> and counting!
+</p>
+
 <ul>
   <% @articles.each do |article| %>
     <% unless article.archived? %>

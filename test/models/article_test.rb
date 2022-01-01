@@ -87,4 +87,8 @@ class ArticleTest < ActiveSupport::TestCase
     @article.status = "private"
     assert_not @article.archived?
   end
+
+  test "public count matches number of public records" do
+    assert_equal 1, Article.public_count
+  end
 end

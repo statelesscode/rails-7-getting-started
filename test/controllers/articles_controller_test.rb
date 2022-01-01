@@ -17,6 +17,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_select "h1", "Articles"
     assert_select "li", Article.count - 1
     assert_select "a", "New Article"
+    assert_select "p.public-count", "Our blog has 1 article and counting!"
   end
 
   test "should get show" do
@@ -31,7 +32,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_select "p.comment-body", @article.comments.count - 1
     assert_select "h2", "Add a comment:"
     assert_select "form"
-    assert_select "form p", 3
+    assert_select "form p", 4
   end
 
   test "should get new" do
@@ -39,7 +40,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "h1", "New Article"
     assert_select "form"
-    assert_select "form div", 3
+    assert_select "form div", 4
   end
 
   test "should create article" do
@@ -76,7 +77,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "h1", "Edit Article"
     assert_select "form"
-    assert_select "form div", 3
+    assert_select "form div", 4
   end
 
   test "should update article" do

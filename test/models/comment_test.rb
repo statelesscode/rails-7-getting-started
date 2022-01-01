@@ -59,4 +59,8 @@ class CommentTest < ActiveSupport::TestCase
     @comment.status = "private"
     assert_not @comment.archived?
   end
+
+  test "public count matches number of public records" do
+    assert_equal 2, Comment.public_count
+  end
 end
