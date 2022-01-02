@@ -4,6 +4,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @article = articles(:nerd)
     @valid_status = "public"
+    @auth_headers = generate_auth_headers
   end
 
   test "should create comment" do
@@ -30,10 +31,21 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
   test "should destroy comment" do
     comment = @article.comments.last
     assert_difference("Comment.count", -1) do
-      delete article_comment_path(@article, comment), params: { article_id: @article.id, id: comment.id }
+      delete article_comment_path(@article, comment),
+          params: { article_id: @article.id, id: comment.id }, headers: @auth_headers
     end
 
     assert_redirected_to article_path(@article)
     assert_equal "Comment was successfully destroyed.", flash[:notice]
+  end
+
+  test "should not destroy comment if unauthorized" do
+    comment = @article.comments.last
+    assert_no_difference("Comment.count") do
+      delete article_comment_path(@article, comment),
+          params: { article_id: @article.id, id: comment.id }
+    end
+
+    assert_response :unauthorized
   end
 end

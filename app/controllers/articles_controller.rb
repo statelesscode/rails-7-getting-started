@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[ show edit update destroy ]
+  http_basic_authenticate_with name: "stateless", password: "code", except: :index
 
+  before_action :set_article, only: %i[ show edit update destroy ]
   def index
     @articles = Article.all
   end

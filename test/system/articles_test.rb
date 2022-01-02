@@ -8,8 +8,9 @@ class ArticlesTest < ApplicationSystemTestCase
   test "destroying a comment" do
     spam_commenter = "Social Media Giant"
     spam_body = "Visit the COVID-19 resource center so we can tell you what to think!"
-    visit article_url(@article)
 
+    visit construct_with_http_auth(article_path(@article))
+    visit article_url(@article)
     # add a spam comment
     fill_in "Commenter", with: spam_commenter
     fill_in "Body", with: spam_body
@@ -18,7 +19,6 @@ class ArticlesTest < ApplicationSystemTestCase
 
     assert_text spam_commenter
     assert_text spam_body
-
     within("div#comment_#{@article.comments.last.id}") do
       page.accept_confirm do
         click_on "Destroy Comment"
@@ -34,6 +34,7 @@ class ArticlesTest < ApplicationSystemTestCase
   end
 
   test "destroying an article" do
+    visit construct_with_http_auth(article_path(@article))
     visit article_url(@article)
     page.accept_confirm do
       click_on "Destroy"
@@ -45,4 +46,11 @@ class ArticlesTest < ApplicationSystemTestCase
     assert_text articles(:why).title
     assert_text "New Article"
   end
+
+  private
+    def construct_with_http_auth(path)
+      username = "stateless"
+      password = "code"
+      "http://#{username}:#{password}@#{Capybara.current_session.server.host}:#{Capybara.current_session.server.port}#{path}"
+    end
 end

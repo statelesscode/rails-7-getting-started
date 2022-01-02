@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  http_basic_authenticate_with name: "stateless", password: "code", only: :destroy
+
   before_action :set_article
 
   def create

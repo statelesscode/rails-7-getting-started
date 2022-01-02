@@ -18,4 +18,8 @@ class ActiveSupport::TestCase
         "Invalid #{klass_name} Fixture: #{model_record.inspect}\n\nErrors: #{model_record.errors.messages}")
     end
   end
+
+  def generate_auth_headers
+    {'Authorization' => "Basic #{Base64.strict_encode64('stateless:code')}"}
+  end
 end
