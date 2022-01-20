@@ -22,7 +22,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get show" do
-    get article_url(@article), headers: @auth_headers
+    get article_url(@article)
     assert_response :success
     assert_select "h1", @article.title
     assert_select "p", @article.body
@@ -36,11 +36,6 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     assert_select "form"
     assert_select "form p", 4
     status_option_assertions
-  end
-
-  test "should not get show if unauthorized" do
-    get article_url(@article)
-    assert_response :unauthorized
   end
 
   test "should get new" do

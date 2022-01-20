@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  http_basic_authenticate_with name: "stateless", password: "code", except: :index
+  http_basic_authenticate_with name: "stateless", password: "code", except: %i[ show index ]
 
   before_action :set_article, only: %i[ show edit update destroy ]
   def index

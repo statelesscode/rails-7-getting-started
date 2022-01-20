@@ -25,7 +25,7 @@ module VisibleTestHelpers
     end
 
     test "archived should be false if not archived" do
-      @status_existing.archived?
+      assert_not @status_existing.archived?
       @article.status = "private"
       assert_not @status_existing.archived?
     end

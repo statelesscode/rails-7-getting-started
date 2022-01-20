@@ -9,7 +9,7 @@ class ArticlesTest < ApplicationSystemTestCase
     spam_commenter = "Social Media Giant"
     spam_body = "Visit the COVID-19 resource center so we can tell you what to think!"
 
-    visit construct_with_http_auth(article_path(@article))
+    visit construct_with_http_auth(edit_article_path(@article))
     visit article_url(@article)
     # add a spam comment
     fill_in "Commenter", with: spam_commenter
@@ -24,7 +24,6 @@ class ArticlesTest < ApplicationSystemTestCase
         click_on "Destroy Comment"
       end
     end
-
     assert_text "Comment was successfully destroyed."
     assert_text @article.title
     assert_no_text spam_commenter
@@ -34,7 +33,7 @@ class ArticlesTest < ApplicationSystemTestCase
   end
 
   test "destroying an article" do
-    visit construct_with_http_auth(article_path(@article))
+    visit construct_with_http_auth(edit_article_path(@article))
     visit article_url(@article)
     page.accept_confirm do
       click_on "Destroy"
