@@ -2,24 +2,20 @@
 
 nerd_gm:
   commenter: Nerdy Game Master
-  body: I love how i can do something like NerdDice.roll_4d6_with_advantage_3 and it just works!
   article: nerd
   status: public
 
 nerd_ruby:
   commenter: Ruby Enthusiast
-  body: Thanks for the episode on method_missing and Ruby metaprogramming! It really helped me out.
   article: nerd
   status: private
 
 nerd_archived:
   commenter: Archiver
-  body: Please archive this comment
   article: nerd
   status: archived
 
 why_visionary:
   commenter: Visionary
-  body: That Start With Why video is my favorite TED talk!
   article: why
   status: public

@@ -24,7 +24,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     comment = @article.comments.last
     assert_redirected_to article_path(@article)
     assert_equal commenter, comment.commenter
-    assert_equal body, comment.body
+    assert_equal body, comment.body.to_plain_text
     assert_equal "Comment was successfully created.", flash[:notice]
   end
 

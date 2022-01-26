@@ -27,7 +27,7 @@ class CommentTest < ActiveSupport::TestCase
     assert_not_nil comment.id
     assert_equal @article.id, comment.article_id
     assert_equal @commenter, comment.commenter
-    assert_equal @valid_body, comment.body
+    assert_equal @valid_body, comment.body.to_plain_text
     assert_equal @valid_status, comment.status
   end
 

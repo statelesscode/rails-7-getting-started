@@ -25,7 +25,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     get article_url(@article)
     assert_response :success
     assert_select "h1", @article.title
-    assert_select "p", @article.body
+    assert_select "p", @article.body.to_plain_text
     assert_select "a", "Edit"
     assert_select "a", "Destroy"
     assert_select "h2", "Comments"
@@ -165,15 +165,13 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
     def saved_article_assertions(article)
       assert_redirected_to article_path(article)
       assert_equal @article_title, article.title
-      assert_equal @article_body, article.body
+      assert_equal @article_body, article.body.to_plain_text
     end
 
     def form_error_assertions
       assert_select "form"
-      assert_select "div.error", 3
+      assert_select "div.error", 1
       assert_select "div.error", @title_blank
-      assert_select "div.error", @body_blank
-      assert_select "div.error", @body_short
     end
 
     def article_form_assertions

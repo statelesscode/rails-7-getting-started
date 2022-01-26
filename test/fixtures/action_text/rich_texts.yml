@@ -1,0 +1,50 @@
+# Articles
+nerd_article:
+  record: nerd (Article)
+  name: content
+  body: >-
+    <p>These videos take you end-to-end through a project that creates a ruby gem.
+    (The subject matter of polyhedral dice was chosen because Mike\'s a giant nerd.)
+    The series covers a number of programming concepts that will help you be a better
+    software developer, particularly in Ruby.</p>
+why_article:
+  record: why (Article)
+  name: content
+  body: >-
+    <p>Inspired by Simon Sinek\'s brilliant video Start with Why, these videos explain the
+    North Star of Stateless Code. What gets us out of bed in the morning and motivates
+    us to keep producing videos? Why do we do what we do? What is the dream for this
+    organization? Start at the center of the Golden Circle and communicate outward rather
+    than on the outside and communicating inward. Are we just being lazy video editors by
+    leaving the mistakes in our videos? Why the Jesus is Lord in the footer and the
+    in-your-face anarchy symbol in the branding? These videos are here to remind ourselves
+    of our promise to you. Taking the time to stop and think about the Why will help you
+    prioritize and avoid mission creep.</p>
+outdated_article:
+  record: outdated (Article)
+  name: content
+  body: >-
+    <p>We will just be able to keep near zero interest rates <em>forever</em> without
+    consequences</p>
+
+# Comments
+nerd_gm_comment:
+  record: nerd_gm (Comment)
+  name: content
+  body: >-
+    <p>I love how i can do something like NerdDice.roll_4d6_with_advantage_3 and
+    <b>it just works!</b></p>
+nerd_ruby_comment:
+  record: nerd_ruby (Comment)
+  name: content
+  body: >-
+    <p>Thanks for the episode on method_missing and Ruby metaprogramming! It really helped
+    me out.</p>
+nerd_archived_comment:
+  record: nerd_archived (Comment)
+  name: content
+  body: <p>Please <em>archive</em> this comment</p>
+why_visionary_comment:
+  record: why_visionary (Comment)
+  name: content
+  body: <p>That <u>Start With Why</u> video is my favorite TED talk!</p>

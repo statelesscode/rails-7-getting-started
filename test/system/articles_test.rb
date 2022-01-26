@@ -13,7 +13,7 @@ class ArticlesTest < ApplicationSystemTestCase
     visit article_url(@article)
     # add a spam comment
     fill_in "Commenter", with: @spam_commenter
-    fill_in "Body", with: @spam_body
+    find("trix-editor").set(@spam_body)
     # accept default for status
     click_on "Create Comment"
 
@@ -67,18 +67,22 @@ class ArticlesTest < ApplicationSystemTestCase
 
   test "destroyed comment broadcasts to article and removes from page" do
     visit article_url(@article)
-    comment = comments(:nerd_ruby)
+    comment = @article.comments.create!(
+      commenter: @spam_commenter,
+      body: @spam_body,
+      status: "public"
+    )
 
     # validate that comment is in the DOM
     assert_text comment.commenter
-    assert_text comment.body
+    assert_text comment.body.to_plain_text
 
     # destroy the comment outside of the page context
     comment.destroy!
 
     # validate that comment is no longer in the DOM
     assert_no_text comment.commenter
-    assert_no_text comment.body
+    assert_no_text comment.body.to_plain_text
   end
 
   private

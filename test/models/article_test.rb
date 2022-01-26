@@ -28,7 +28,7 @@ class ArticleTest < ActiveSupport::TestCase
     article.reload
     assert_not_nil article.id
     assert_equal @valid_title, article.title
-    assert_equal @valid_body, article.body
+    assert_equal @valid_body, article.body.to_plain_text
     assert_equal @valid_status, article.status
   end
 
@@ -43,33 +43,6 @@ class ArticleTest < ActiveSupport::TestCase
     @article.title = nil
     assert_not @article.valid?
     assert_includes @article.errors.full_messages, @title_blank
-  end
-
-  test "should be invalid if body is blank" do
-    # new
-    article = get_new_article
-    article.body = ""
-    assert_not article.valid?
-    assert_includes article.errors.full_messages, @body_blank
-
-    # existing with empty string
-    @article.body = ""
-    assert_not @article.valid?
-    assert_includes @article.errors.full_messages, @body_blank
-  end
-
-  test "should be invalid if body is too short" do
-    too_short = "Fail"
-    # new
-    article = get_new_article
-    article.body = too_short
-    assert_not article.valid?
-    assert_includes article.errors.full_messages, @body_short
-
-    # existing
-    @article.body = too_short
-    assert_not @article.valid?
-    assert_includes @article.errors.full_messages, @body_short
   end
 
   private
