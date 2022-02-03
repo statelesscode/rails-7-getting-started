@@ -5,12 +5,14 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @article.comments.create(comment_params)
+    CommentsMailer.created(@comment).deliver_later
     redirect_to article_path(@article), notice: "Comment was successfully created."
   end
 
   def destroy
     @comment = @article.comments.find(params[:id])
     @comment.destroy
+    CommentsMailer.destroyed(@comment.commenter, @comment.body.to_plain_text, @comment.status).deliver_later
     redirect_to article_path(@article), status: :see_other, notice: "Comment was successfully destroyed."
   end
 
