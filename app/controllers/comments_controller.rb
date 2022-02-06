@@ -4,9 +4,13 @@ class CommentsController < ApplicationController
   before_action :set_article
 
   def create
-    @comment = @article.comments.create(comment_params)
-    CommentsMailer.created(@comment).deliver_later
-    redirect_to article_path(@article), notice: "Comment was successfully created."
+    @comment = @article.comments.new(comment_params)
+    if @comment.save
+      CommentsMailer.created(@comment).deliver_later
+      redirect_to article_path(@article), notice: "Comment was successfully created."
+    else
+      render 'articles/show', status: :unprocessable_entity
+    end
   end
 
   def destroy

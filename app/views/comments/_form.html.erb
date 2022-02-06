@@ -1,11 +1,18 @@
-<%= form_with model: [ article, article.comments.build ] do |form| %>
+<% comment ||= article.comments.build %>
+<%= form_with model: [ article, comment ] do |form| %>
   <p>
     <%= form.label :commenter %><br>
     <%= form.text_field :commenter %>
+    <% comment.errors.full_messages_for(:commenter).each do |message| %>
+      <div class="error"><%= message %></div>
+    <% end %>
   </p>
   <p>
     <%= form.label :body %><br>
     <%= form.rich_text_area :body %>
+    <% comment.errors.full_messages_for(:body).each do |message| %>
+      <div class="error"><%= message %></div>
+    <% end %>
   </p>
   <p>
     <%= form.label :status %><br>

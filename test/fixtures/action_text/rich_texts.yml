@@ -1,7 +1,7 @@
 # Articles
 nerd_article:
   record: nerd (Article)
-  name: content
+  name: body
   body: >-
     <p>These videos take you end-to-end through a project that creates a ruby gem.
     (The subject matter of polyhedral dice was chosen because Mike\'s a giant nerd.)
@@ -9,7 +9,7 @@ nerd_article:
     software developer, particularly in Ruby.</p>
 why_article:
   record: why (Article)
-  name: content
+  name: body
   body: >-
     <p>Inspired by Simon Sinek\'s brilliant video Start with Why, these videos explain the
     North Star of Stateless Code. What gets us out of bed in the morning and motivates
@@ -22,7 +22,7 @@ why_article:
     prioritize and avoid mission creep.</p>
 outdated_article:
   record: outdated (Article)
-  name: content
+  name: body
   body: >-
     <p>We will just be able to keep near zero interest rates <em>forever</em> without
     consequences</p>
@@ -30,21 +30,21 @@ outdated_article:
 # Comments
 nerd_gm_comment:
   record: nerd_gm (Comment)
-  name: content
+  name: body
   body: >-
     <p>I love how i can do something like NerdDice.roll_4d6_with_advantage_3 and
     <b>it just works!</b></p>
 nerd_ruby_comment:
   record: nerd_ruby (Comment)
-  name: content
+  name: body
   body: >-
     <p>Thanks for the episode on method_missing and Ruby metaprogramming! It really helped
     me out.</p>
 nerd_archived_comment:
   record: nerd_archived (Comment)
-  name: content
+  name: body
   body: <p>Please <em>archive</em> this comment</p>
 why_visionary_comment:
   record: why_visionary (Comment)
-  name: content
+  name: body
   body: <p>That <u>Start With Why</u> video is my favorite TED talk!</p>

@@ -2,15 +2,15 @@ require "test_helper"
 
 class ArticleTest < ActiveSupport::TestCase
   include VisibleTestHelpers
+  include RichTextBodyTestHelpers
 
   def setup
     @article = articles(:nerd)
     @valid_title = "I have a valid title"
     @valid_body = "This body is long enough."
     @title_blank = "Title can't be blank"
-    @body_blank = "Body can't be blank"
-    @body_short = "Body is too short (minimum is 10 characters)"
     shared_status_setup
+    shared_body_setup
     @status_new = get_new_article
     @status_existing = @article
     @public_count = 1

@@ -2,13 +2,16 @@ require "test_helper"
 
 class CommentTest < ActiveSupport::TestCase
   include VisibleTestHelpers
+  include RichTextBodyTestHelpers
 
   def setup
     @article = articles(:nerd)
     @comment = comments(:why_visionary)
     @commenter = "A new commenter"
     @valid_body = "I am a comment body"
+    @commenter_blank = "Commenter can't be blank"
     shared_status_setup
+    shared_body_setup
     @status_new = get_new_comment
     @status_existing = @comment
     @public_count = 2
@@ -29,6 +32,19 @@ class CommentTest < ActiveSupport::TestCase
     assert_equal @commenter, comment.commenter
     assert_equal @valid_body, comment.body.to_plain_text
     assert_equal @valid_status, comment.status
+  end
+
+  test "should be invalid if commenter is blank" do
+    # new
+    comment = get_new_comment
+    comment.commenter = nil
+    assert_not comment.valid?
+    assert_includes comment.errors.full_messages, @commenter_blank
+
+    # existing with nil
+    @comment.commenter = nil
+    assert_not @comment.valid?
+    assert_includes @comment.errors.full_messages, @commenter_blank
   end
 
   private

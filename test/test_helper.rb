@@ -1,6 +1,7 @@
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require_relative "./support/visible_test_helpers"
+require_relative "./support/rich_text_body_test_helpers"
 require "rails/test_help"
 
 class ActiveSupport::TestCase

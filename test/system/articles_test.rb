@@ -8,7 +8,6 @@ class ArticlesTest < ApplicationSystemTestCase
   end
 
   test "destroying a comment" do
-
     visit construct_with_http_auth(edit_article_path(@article))
     visit article_url(@article)
     # add a spam comment

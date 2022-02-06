@@ -170,7 +170,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
 
     def form_error_assertions
       assert_select "form"
-      assert_select "div.error", 1
+      assert_select "div.error", 3
       assert_select "div.error", @title_blank
     end
 
