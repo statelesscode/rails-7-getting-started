@@ -3,4 +3,12 @@
 <p>We also generated a similar resource called <%= link_to "posts", posts_path %> using the
    scaffold generator.</p>
 
+<div data-controller="hello">
+   <h5>Stimulus Example</h5>
+   <p data-hello-target="content"></p>
+   <p data-hello-target="remaining"></p>
+   <button data-hello-target="nextButton" data-action="click->hello#nextQuote">Get next quote</button>
+   <button data-hello-target="resetButton" data-action="click->hello#reset">Reset</button>
+</div>
+
 <%= image_tag "GettingStartedRails7_512.png", class: "animate__animated animate__slideInLeft"%>
